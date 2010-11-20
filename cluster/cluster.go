@@ -1,3 +1,5 @@
+// Package cluster implements a set of cluster operations that define the interactions
+// between a master node and an ad hoc tree of peers and worker nodes
 package cluster
 
 import (
@@ -147,6 +149,10 @@ func RunWorkers(fam, addr string, args StartArgs) (err os.Error) {
 	//
 }
 
+func collectFileData()  (err os.Error) {
+	// the client 
+	return
+}
 
 // MASTER
 // make a local socket targeting the address
@@ -155,6 +161,19 @@ func RunWorkers(fam, addr string, args StartArgs) (err os.Error) {
 // 	
 // export a tcp netchan locally
 // and make slaves on all of them
+
+// RunMaster caches the local file data for pushing to the local worker nodes
+func RunMaster() (err os.Error){
+	makeLocalSocket()
+	collectFileData()
+	w, err := worker.NewWorker("unix", "0.0.0.0:0")
+	if err != nil {
+		return
+	}
+	makeSlave()
+}
+
+
 
 // EXEC
 // get a list of stuff you need to takeout
@@ -165,3 +184,21 @@ func RunWorkers(fam, addr string, args StartArgs) (err os.Error) {
 // send arguments
 // for all of the files copy them to the clients
 // wait for your workers to complete
+
+// Exec gets a list of files to send to worker nodes and peer nodes, sends
+// arguments to the worker, then sends the files and waits for the worker to
+// complete
+func  Exec() (err os.Error) {
+	// EXEC
+	// get a list of stuff you need to takeout
+	// get the library path
+	// and load everything in your command file and your library path
+	// make workers for everything in the nodelist
+	// also get peers
+	// send arguments
+	// for all of the files copy them to the clients
+	// wait for your workers to complete
+}
+
+
+
